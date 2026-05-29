@@ -1,5 +1,13 @@
 import type { BlogPost } from './posts'
 import { getBlogPostUrl, SITE_BASE_URL } from './posts'
+import {
+  SITE_ORGANIZATION_ID,
+} from '@/lib/site-schema'
+
+const organizationRef = {
+  '@type': 'Organization' as const,
+  '@id': SITE_ORGANIZATION_ID,
+}
 
 export function buildBlogPostSchema(post: BlogPost) {
   const postUrl = getBlogPostUrl(post.slug)
@@ -26,18 +34,8 @@ export function buildBlogPostSchema(post: BlogPost) {
         name: 'OBSportPsychology',
         description:
           'Sport and Exercise Psychology support for athletes, teams, and organisations.',
-        publisher: { '@id': `${SITE_BASE_URL}/#organization` },
+        publisher: organizationRef,
         inLanguage: 'en-GB',
-      },
-      {
-        '@type': 'Organization',
-        '@id': `${SITE_BASE_URL}/#organization`,
-        name: 'OBSportPsychology',
-        url: SITE_BASE_URL,
-        logo: {
-          '@type': 'ImageObject',
-          url: `${SITE_BASE_URL}/images/OB%20Sport%20Psychology.png`,
-        },
       },
       {
         '@type': 'Person',
@@ -45,11 +43,11 @@ export function buildBlogPostSchema(post: BlogPost) {
         name: post.author.name,
         jobTitle: post.author.role,
         url: post.author.url,
-        worksFor: { '@id': `${SITE_BASE_URL}/#organization` },
+        worksFor: organizationRef,
         knowsAbout: [
-          'Sport Psychology',
-          'Youth Athletes',
-          'Autonomy-Supportive Coaching',
+          { '@type': 'Thing', name: 'Sport Psychology' },
+          { '@type': 'Thing', name: 'Youth Athletes' },
+          { '@type': 'Thing', name: 'Autonomy-Supportive Coaching' },
         ],
       },
       {
@@ -58,12 +56,15 @@ export function buildBlogPostSchema(post: BlogPost) {
         url: postUrl,
         name: post.title,
         description: post.excerpt,
-        isPartOf: { '@id': `${SITE_BASE_URL}/#website` },
-        primaryImageOfPage: { '@id': `${postUrl}/#primaryimage` },
+        isPartOf: { '@type': 'WebSite', '@id': `${SITE_BASE_URL}/#website` },
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          '@id': `${postUrl}/#primaryimage`,
+        },
         datePublished: post.publishedAt,
         dateModified: post.updatedAt,
         inLanguage: 'en-GB',
-        breadcrumb: { '@id': `${postUrl}/#breadcrumb` },
+        breadcrumb: { '@type': 'BreadcrumbList', '@id': `${postUrl}/#breadcrumb` },
       },
       {
         '@type': 'ImageObject',
@@ -101,20 +102,20 @@ export function buildBlogPostSchema(post: BlogPost) {
       {
         '@type': 'BlogPosting',
         '@id': `${postUrl}/#blogposting`,
-        mainEntityOfPage: { '@id': `${postUrl}/#webpage` },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${postUrl}/#webpage` },
         headline: post.title,
         description: post.excerpt,
-        image: { '@id': `${postUrl}/#primaryimage` },
+        image: { '@type': 'ImageObject', '@id': `${postUrl}/#primaryimage` },
         datePublished: post.publishedAt,
         dateModified: post.updatedAt,
-        author: { '@id': `${SITE_BASE_URL}/#author-olly` },
-        publisher: { '@id': `${SITE_BASE_URL}/#organization` },
+        author: { '@type': 'Person', '@id': `${SITE_BASE_URL}/#author-olly` },
+        publisher: organizationRef,
         url: postUrl,
         articleBody,
         wordCount: articleBody.split(/\s+/).length,
         timeRequired: `PT${post.readTimeMinutes}M`,
         keywords: post.keywords.join(', '),
-        articleSection: post.tags,
+        articleSection: post.tags.join(', '),
         inLanguage: 'en-GB',
         about: [
           { '@type': 'Thing', name: 'Sport Psychology' },
@@ -135,9 +136,9 @@ export function buildBlogPostSchema(post: BlogPost) {
         image: imageUrl,
         datePublished: post.publishedAt,
         dateModified: post.updatedAt,
-        author: { '@id': `${SITE_BASE_URL}/#author-olly` },
-        publisher: { '@id': `${SITE_BASE_URL}/#organization` },
-        mainEntityOfPage: { '@id': `${postUrl}/#webpage` },
+        author: { '@type': 'Person', '@id': `${SITE_BASE_URL}/#author-olly` },
+        publisher: organizationRef,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${postUrl}/#webpage` },
         inLanguage: 'en-GB',
       },
       {
@@ -165,11 +166,7 @@ export function buildBlogListingSchema(posts: BlogPost[]) {
     name: 'OBSportPsychology Blog',
     description:
       'Articles on sport psychology, youth athletes, coaching, and performance.',
-    publisher: {
-      '@type': 'Organization',
-      name: 'OBSportPsychology',
-      url: SITE_BASE_URL,
-    },
+    publisher: organizationRef,
     blogPost: posts.map((post) => ({
       '@type': 'BlogPosting',
       headline: post.title,

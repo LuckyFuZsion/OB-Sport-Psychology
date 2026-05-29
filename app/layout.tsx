@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { CONTACT_PHONE_E164 } from '@/lib/contact-mailto'
 import {
   SITE_OG_DESCRIPTION,
   SITE_OG_IMAGE,
@@ -8,6 +7,7 @@ import {
   getCanonicalUrl,
   getSiteOgImageUrl,
 } from '@/lib/site'
+import { buildSiteJsonLd } from '@/lib/site-schema'
 import { MotionProvider } from '@/components/motion-provider'
 import './globals.css'
 
@@ -79,31 +79,7 @@ export const metadata: Metadata = {
   },
 }
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'OBSportPsychology',
-  description:
-    'Sport and Exercise Psychology practice offering 1-on-1 sessions, group workshops, and organisational support.',
-  url: SITE_URL,
-  telephone: CONTACT_PHONE_E164,
-  address: {
-    '@type': 'PostalAddress',
-    addressCountry: 'GB',
-  },
-  areaServed: {
-    '@type': 'Country',
-    name: 'United Kingdom',
-  },
-  knowsAbout: [
-    'Sport Psychology',
-    'Football Psychology',
-    'Cricket Psychology',
-    'Mental Skills Training',
-    'Group Workshops',
-  ],
-  sameAs: [],
-}
+const jsonLd = buildSiteJsonLd()
 
 export default function RootLayout({
   children,
