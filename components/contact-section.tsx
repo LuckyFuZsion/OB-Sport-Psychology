@@ -10,6 +10,7 @@ import {
   buildContactEmailDraft,
   type ContactEmailDraft,
 } from '@/lib/contact-mailto'
+import { Reveal } from '@/components/reveal'
 import { SectionEyebrow, SectionTitle } from '@/components/section-header'
 
 interface FormState {
@@ -70,7 +71,7 @@ export function ContactSection() {
     'w-full bg-input border border-card-border rounded-md px-4 py-3 text-sm text-card-foreground placeholder:text-card-muted focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-colors duration-200'
 
   const actionButtonClass =
-    'inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 text-sm font-semibold rounded-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+    'btn-motion inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 text-sm font-semibold rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
 
   return (
     <section
@@ -79,9 +80,12 @@ export function ContactSection() {
       aria-label="Contact form"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionEyebrow>Contact</SectionEyebrow>
+        <Reveal>
+          <SectionEyebrow>Contact</SectionEyebrow>
+        </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+          <Reveal delay={80}>
           <div>
             <SectionTitle className="mb-6" highlight="Touch">
               Get in
@@ -127,8 +131,9 @@ export function ContactSection() {
               </div>
             </div>
           </div>
+          </Reveal>
 
-          <div className="panel-elevated p-8">
+          <Reveal delay={160} className="panel-elevated p-8">
             {draft ? (
               <div className="flex flex-col min-h-[320px] gap-5">
                 <div className="text-center sm:text-left">
@@ -281,7 +286,7 @@ export function ContactSection() {
                 </p>
               </form>
             )}
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

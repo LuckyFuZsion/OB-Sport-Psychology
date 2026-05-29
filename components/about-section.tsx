@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { Reveal } from '@/components/reveal'
 import type { ReactNode } from 'react'
 import type { LucideIcon } from 'lucide-react'
 import {
@@ -136,11 +137,13 @@ export function AboutSection() {
       aria-label="Qualifications, sport psychology background, and FAQs"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionTitle className="mb-16 max-w-2xl" highlight="Understanding">
-          Qualifications, Experience &amp;
-        </SectionTitle>
+        <Reveal>
+          <SectionTitle className="mb-16 max-w-2xl" highlight="Understanding">
+            Qualifications, Experience &amp;
+          </SectionTitle>
+        </Reveal>
 
-        <div className="panel-elevated p-6 sm:p-8 lg:p-10 mb-16 lg:mb-20">
+        <Reveal className="panel-elevated p-6 sm:p-8 lg:p-10 mb-16 lg:mb-20" delay={80}>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             <div>
               <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground mb-6">
@@ -210,10 +213,10 @@ export function AboutSection() {
               </p>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         <div className="mb-16 lg:mb-20">
-          <div className="panel-elevated relative overflow-hidden p-6 sm:p-8 lg:p-10">
+          <Reveal className="panel-elevated relative overflow-hidden p-6 sm:p-8 lg:p-10">
             <div
               className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-flourish/12 blur-3xl"
               aria-hidden="true"
@@ -232,15 +235,15 @@ export function AboutSection() {
               </p>
             </div>
 
-            <div className="relative grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-5">
+            <div className="relative grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-5 items-stretch">
               {pillars.map((pillar, index) => {
                 const Icon = pillar.icon
                 return (
+                  <Reveal key={pillar.name} delay={index * 80} className="h-full">
                   <article
-                    key={pillar.name}
-                    className={`group relative flex flex-col rounded-2xl border p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 ${
+                    className={`group relative flex h-full flex-col rounded-2xl border p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 ${
                       pillar.featured
-                        ? 'border-accent/40 bg-gradient-to-br from-accent/12 via-accent/5 to-card-elevated shadow-md shadow-accent/5 sm:col-span-2 xl:col-span-1'
+                        ? 'border-accent/40 bg-gradient-to-br from-accent/12 via-accent/5 to-card-elevated shadow-md shadow-accent/5'
                         : 'border-card-border bg-card-elevated hover:border-flourish/25 hover:shadow-md hover:shadow-black/20'
                     }`}
                   >
@@ -277,20 +280,23 @@ export function AboutSection() {
                       {pillar.detail}
                     </p>
 
-                    {pillar.featured && (
-                      <p className="mt-4 inline-flex w-fit items-center rounded-full border border-accent/30 bg-accent/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-blue">
-                        Core focus
-                      </p>
-                    )}
+                    <div className="mt-4 min-h-[1.75rem]">
+                      {pillar.featured ? (
+                        <p className="inline-flex w-fit items-center rounded-full border border-accent/30 bg-accent/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-blue">
+                          Core focus
+                        </p>
+                      ) : null}
+                    </div>
                   </article>
+                  </Reveal>
                 )
               })}
             </div>
-          </div>
+          </Reveal>
         </div>
 
         <div className="mb-16 lg:mb-20">
-          <div className="panel-elevated relative overflow-hidden p-6 sm:p-8 lg:p-10">
+          <Reveal className="panel-elevated relative overflow-hidden p-6 sm:p-8 lg:p-10">
             <div
               className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-accent/30 to-transparent"
               aria-hidden="true"
@@ -310,10 +316,11 @@ export function AboutSection() {
             </div>
 
             <ul className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4">
-              {supportAreas.map((area) => {
+              {supportAreas.map((area, index) => {
                 const Icon = area.icon
                 return (
-                  <li key={area.name}>
+                  <Reveal key={area.name} delay={index * 50} className="h-full">
+                  <li className="h-full">
                     <div className="group flex h-full flex-col gap-3 rounded-xl border border-card-border bg-card-elevated p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-flourish/30 hover:bg-accent/5 hover:shadow-md hover:shadow-black/20 xl:items-center xl:text-center">
                       <div
                         className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-accent/20 bg-accent/10 text-brand-blue transition-all duration-300 group-hover:scale-105 group-hover:border-accent/35 group-hover:bg-accent/15 xl:mx-auto"
@@ -326,13 +333,14 @@ export function AboutSection() {
                       </span>
                     </div>
                   </li>
+                  </Reveal>
                 )
               })}
             </ul>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="panel-elevated p-6 sm:p-8">
+        <Reveal className="panel-elevated p-6 sm:p-8">
           <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground mb-6">
             <CircleHelp className="h-4 w-4 text-brand-blue" aria-hidden="true" />
             FAQs
@@ -341,24 +349,26 @@ export function AboutSection() {
             {faqs.map((faq) => (
               <details
                 key={faq.question}
-                className="group rounded-xl border border-card-border bg-card-elevated overflow-hidden"
+                className="faq-details group rounded-xl border border-card-border bg-card-elevated overflow-hidden"
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-sm font-semibold text-foreground hover:bg-white/5 transition-colors [&::-webkit-details-marker]:hidden">
                   {faq.question}
                   <span
-                    className="text-brand-blue text-lg leading-none transition-transform group-open:rotate-45"
+                    className="text-brand-blue text-lg leading-none transition-transform duration-300 group-open:rotate-45"
                     aria-hidden="true"
                   >
                     +
                   </span>
                 </summary>
-                <div className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed border-t border-border pt-4">
-                  {faq.answer}
+                <div className="faq-answer border-t border-border">
+                  <div className="faq-answer-inner px-5 pb-5 pt-4 text-sm text-muted-foreground leading-relaxed">
+                    {faq.answer}
+                  </div>
                 </div>
               </details>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

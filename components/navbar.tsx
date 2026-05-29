@@ -7,12 +7,23 @@ import { cn } from '@/lib/utils'
 import { navSections, sectionHref } from '@/lib/home-navigation'
 import { useHomeNavigation } from '@/hooks/use-home-navigation'
 
-const LOGO_SRC = '/images/OB-Sport-Psyhcology-Logo.webp'
+const LOGO_SRC = '/images/OB-Sport-Therapy-Logo-White.webp'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const [scrolled, setScrolled] = useState(false)
   const { isHome, pathname, navigateToSection } = useHomeNavigation()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 80)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect(() => {
     if (!isHome) {
@@ -44,7 +55,12 @@ export function Navbar() {
   }
 
   return (
-    <header className="site-nav fixed top-0 left-0 right-0 z-50 w-full">
+    <header
+      className={cn(
+        'site-nav fixed top-0 left-0 right-0 z-50 w-full',
+        scrolled && 'site-nav-scrolled'
+      )}
+    >
       <nav
         className="mx-auto max-w-7xl px-6 lg:px-8"
         aria-label="Main navigation"
@@ -62,10 +78,10 @@ export function Navbar() {
             <Image
               src={LOGO_SRC}
               alt="OB Sport Psychology"
-              width={200}
-              height={78}
-              sizes="200px"
-              className="h-10 w-auto"
+              width={260}
+              height={101}
+              sizes="260px"
+              className="h-[3.25rem] w-auto"
               priority
             />
           </a>
@@ -91,7 +107,7 @@ export function Navbar() {
                   >
                     {link.label}
                     {isActive && (
-                      <span className="absolute bottom-0 left-4 right-4 h-px bg-brand-blue rounded-full" />
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-brand-blue rounded-full shadow-[0_0_8px_color-mix(in_oklch,var(--brand-blue)_60%,transparent)]" />
                     )}
                   </a>
                 </li>
@@ -105,7 +121,7 @@ export function Navbar() {
               e.preventDefault()
               handleNavClick('contact')
             }}
-            className="hidden lg:inline-flex items-center px-4 py-2 text-sm font-semibold rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="btn-motion hidden lg:inline-flex items-center px-4 py-2 text-sm font-semibold rounded-md bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             Contact
           </a>

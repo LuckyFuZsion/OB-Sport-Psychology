@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
+import { Reveal } from '@/components/reveal'
 import { SectionEyebrow, SectionTitle } from '@/components/section-header'
 
 const services = [
@@ -39,21 +40,29 @@ export function ServicesSection() {
       aria-label="Services offered"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionEyebrow>Services</SectionEyebrow>
+        <Reveal>
+          <SectionEyebrow>Services</SectionEyebrow>
+        </Reveal>
 
-        <SectionTitle className="mb-14 max-w-2xl" highlight="Athletes & Teams">
-          How I Work With
-        </SectionTitle>
+        <Reveal delay={60}>
+          <SectionTitle className="mb-14 max-w-2xl" highlight="Athletes & Teams">
+            How I Work With
+          </SectionTitle>
+        </Reveal>
 
         <div className="space-y-8 lg:space-y-12">
           {services.map((service, index) => (
-            <article
+            <Reveal
               key={service.id}
-              id={service.id}
-              className={`content-card grid lg:grid-cols-2 gap-0 overflow-hidden border-card-border hover:border-flourish/30 transition-colors ${
-                index % 2 === 1 ? 'lg:[direction:rtl]' : ''
-              }`}
+              delay={index * 100}
+              direction={index % 2 === 0 ? 'left' : 'right'}
             >
+              <article
+                id={service.id}
+                className={`content-card grid lg:grid-cols-2 gap-0 overflow-hidden border-card-border hover:border-flourish/30 transition-colors ${
+                  index % 2 === 1 ? 'lg:[direction:rtl]' : ''
+                }`}
+              >
               <div className="bg-card-elevated lg:[direction:ltr]">
                 <Image
                   src={service.image}
@@ -75,13 +84,14 @@ export function ServicesSection() {
                 </p>
                 <a
                   href="#contact"
-                  className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 rounded-md text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-lg shadow-primary/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="btn-motion inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 rounded-md text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   Get in touch
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
-            </article>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

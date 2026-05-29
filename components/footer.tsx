@@ -6,7 +6,7 @@ import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF } from '@/lib/contact-
 import { navSections, sectionHref } from '@/lib/home-navigation'
 import { useHomeNavigation } from '@/hooks/use-home-navigation'
 
-const LOGO_SRC = '/images/OB-Sport-Psyhcology-Logo.webp'
+const LOGO_SRC = '/images/OB-Sport-Therapy-Logo-White.webp'
 const WEBFUZSION_LOGO_SRC = '/images/webfuzsion-logo.webp'
 const WEBFUZSION_URL = 'https://webfuzsion.co.uk'
 const currentYear = new Date().getFullYear()

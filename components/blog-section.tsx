@@ -1,6 +1,7 @@
 import { getAllBlogPosts } from '@/lib/blog/posts'
 import { buildBlogListingSchema } from '@/lib/blog/schema'
 import { BlogCard } from '@/components/blog/blog-card'
+import { Reveal } from '@/components/reveal'
 import { SectionEyebrow, SectionTitle } from '@/components/section-header'
 
 export function BlogSection() {
@@ -20,19 +21,25 @@ export function BlogSection() {
       />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionEyebrow>Blog</SectionEyebrow>
+        <Reveal>
+          <SectionEyebrow>Blog</SectionEyebrow>
+        </Reveal>
 
-        <SectionTitle className="mb-4 max-w-2xl" highlight="Updates">
-          Insights &amp;
-        </SectionTitle>
-        <p className="text-muted-foreground leading-relaxed mb-12 max-w-xl">
-          Evidence-based articles on sport psychology, youth athletes, and
-          performance.
-        </p>
+        <Reveal delay={60}>
+          <SectionTitle className="mb-4 max-w-2xl" highlight="Updates">
+            Insights &amp;
+          </SectionTitle>
+          <p className="text-muted-foreground leading-relaxed mb-12 max-w-xl">
+            Evidence-based articles on sport psychology, youth athletes, and
+            performance.
+          </p>
+        </Reveal>
 
         <div className="grid gap-6 max-w-2xl">
-          {posts.map((post) => (
-            <BlogCard key={post.slug} post={post} />
+          {posts.map((post, index) => (
+            <Reveal key={post.slug} delay={index * 100}>
+              <BlogCard post={post} />
+            </Reveal>
           ))}
         </div>
       </div>

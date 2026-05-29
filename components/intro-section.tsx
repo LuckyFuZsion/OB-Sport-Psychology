@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { Reveal } from '@/components/reveal'
 import { SectionEyebrow } from '@/components/section-header'
 
 export function IntroSection() {
@@ -9,11 +10,13 @@ export function IntroSection() {
       aria-label="About Olly"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionEyebrow>About</SectionEyebrow>
+        <Reveal>
+          <SectionEyebrow>About</SectionEyebrow>
+        </Reveal>
 
-        <div className="panel-elevated p-6 sm:p-8 lg:p-10">
+        <Reveal className="panel-elevated p-6 sm:p-8 lg:p-10" delay={80}>
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start lg:items-stretch">
-            <div className="space-y-6 text-card-muted leading-relaxed text-base sm:text-lg">
+            <Reveal className="space-y-6 text-card-muted leading-relaxed text-base sm:text-lg" delay={120}>
               <p className="text-card-foreground text-lg sm:text-xl font-medium">
                 My name is Olly and I am a Sport and Exercise Psychologist (in
                 training) with the Chartered Association of Sport and Exercise
@@ -41,9 +44,12 @@ export function IntroSection() {
                 I have expertise in football and cricket, with a deep
                 understanding of a plethora of sports.
               </p>
-            </div>
+            </Reveal>
 
-            <figure className="relative mx-auto w-full max-w-sm aspect-[4/5] lg:aspect-auto lg:h-full lg:max-w-none lg:mx-0 min-h-[280px] lg:min-h-0">
+            <Reveal
+              className="relative mx-auto w-full max-w-sm aspect-[4/5] lg:aspect-auto lg:h-full lg:max-w-none lg:mx-0 min-h-[280px] lg:min-h-0"
+              delay={200}
+            >
               <Image
                 src="/images/Olly.webp"
                 alt="Olly, sport and exercise psychologist in training"
@@ -52,9 +58,9 @@ export function IntroSection() {
                 sizes="(max-width: 1024px) 100vw, 480px"
                 loading="lazy"
               />
-            </figure>
+            </Reveal>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

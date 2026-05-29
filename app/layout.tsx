@@ -8,6 +8,7 @@ import {
   getCanonicalUrl,
   getSiteOgImageUrl,
 } from '@/lib/site'
+import { MotionProvider } from '@/components/motion-provider'
 import './globals.css'
 
 const inter = Inter({
@@ -120,7 +121,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <div className="site-bg" aria-hidden="true" />
-        {children}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   )

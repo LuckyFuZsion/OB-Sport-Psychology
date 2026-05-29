@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { Reveal } from '@/components/reveal'
 import { SectionEyebrow, SectionTitle } from '@/components/section-header'
 
 const placements = [
@@ -26,21 +27,23 @@ export function GallerySection() {
       aria-label="Gallery and experience"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionEyebrow>Gallery</SectionEyebrow>
+        <Reveal>
+          <SectionEyebrow>Gallery</SectionEyebrow>
+        </Reveal>
 
-        <SectionTitle className="mb-4 max-w-2xl" highlight="Worked">
-          Where I&apos;ve
-        </SectionTitle>
-        <p className="text-muted-foreground leading-relaxed mb-12 max-w-xl">
-          Experience across academy and professional football environments.
-        </p>
+        <Reveal delay={60}>
+          <SectionTitle className="mb-4 max-w-2xl" highlight="Worked">
+            Where I&apos;ve
+          </SectionTitle>
+          <p className="text-muted-foreground leading-relaxed mb-12 max-w-xl">
+            Experience across academy and professional football environments.
+          </p>
+        </Reveal>
 
         <div className="grid sm:grid-cols-2 gap-6">
-          {placements.map((item) => (
-            <figure
-              key={item.name}
-              className="content-card group flex flex-col overflow-hidden hover:border-flourish/30 transition-colors"
-            >
+          {placements.map((item, index) => (
+            <Reveal key={item.name} delay={index * 120}>
+              <figure className="content-card group flex flex-col overflow-hidden hover:border-flourish/30 transition-colors">
               <div className={`relative aspect-[16/10] ${item.imageBg}`}>
                 <Image
                   src={item.image}
@@ -60,7 +63,8 @@ export function GallerySection() {
                   {item.name}
                 </p>
               </figcaption>
-            </figure>
+              </figure>
+            </Reveal>
           ))}
         </div>
       </div>

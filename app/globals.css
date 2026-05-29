@@ -127,6 +127,135 @@
     border-bottom: 1px solid var(--nav-border);
     color: var(--nav-foreground);
     box-shadow: 0 4px 24px rgb(0 0 0 / 0.25);
+    transition:
+      box-shadow 0.35s ease,
+      background-color 0.35s ease,
+      border-color 0.35s ease,
+      backdrop-filter 0.35s ease;
+  }
+
+  .site-nav-scrolled {
+    background-color: color-mix(in oklch, var(--nav) 88%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 8px 32px rgb(0 0 0 / 0.4);
+    border-bottom-color: color-mix(in oklch, var(--nav-border) 70%, transparent);
+  }
+
+  /* Scroll reveal — content visible by default; animates when .motion-enhanced is set */
+  .reveal {
+    transition:
+      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html.motion-enhanced .reveal:not(.is-visible) {
+    opacity: 0;
+  }
+
+  html.motion-enhanced .reveal-from-up:not(.is-visible) {
+    transform: translateY(1.25rem);
+  }
+
+  html.motion-enhanced .reveal-from-left:not(.is-visible) {
+    transform: translateX(-1.5rem);
+  }
+
+  html.motion-enhanced .reveal-from-right:not(.is-visible) {
+    transform: translateX(1.5rem);
+  }
+
+  html.motion-enhanced .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hero entrance (CSS-only, no JS) */
+  @keyframes hero-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-flourish-glow {
+    0%,
+    100% {
+      text-shadow: 0 0 0 transparent;
+    }
+    50% {
+      text-shadow: 0 0 24px color-mix(in oklch, var(--brand-blue) 55%, transparent);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-enter {
+      animation: hero-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    }
+
+    .hero-enter-1 {
+      animation-delay: 0.08s;
+    }
+    .hero-enter-2 {
+      animation-delay: 0.16s;
+    }
+    .hero-enter-3 {
+      animation-delay: 0.24s;
+    }
+    .hero-enter-4 {
+      animation-delay: 0.38s;
+    }
+    .hero-enter-5 {
+      animation-delay: 0.52s;
+    }
+
+    .hero-flourish {
+      animation: hero-flourish-glow 2.5s ease-in-out 0.9s 1;
+    }
+  }
+
+  /* FAQ smooth expand */
+  .faq-details .faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .faq-details[open] .faq-answer {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-details .faq-answer-inner {
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-details .faq-answer {
+      transition: none;
+    }
+  }
+
+  /* Button micro-interaction */
+  .btn-motion {
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .btn-motion:hover {
+      transform: scale(1.02);
+    }
+
+    .btn-motion:active {
+      transform: scale(0.98);
+    }
   }
 
   /* Fixed layer — iOS Safari ignores background-attachment: fixed on body */
@@ -212,6 +341,12 @@
   html {
     scroll-behavior: smooth;
     min-height: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
   body {
     position: relative;
