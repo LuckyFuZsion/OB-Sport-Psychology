@@ -5,7 +5,7 @@ export const SITE_ORGANIZATION_ID = `${SITE_URL}/#organization`
 
 export function buildSiteOrganizationNode() {
   return {
-    '@type': ['Organization', 'ProfessionalService'] as const,
+    '@type': 'Organization' as const,
     '@id': SITE_ORGANIZATION_ID,
     name: 'OBSportPsychology',
     description:
@@ -24,19 +24,13 @@ export function buildSiteOrganizationNode() {
       '@type': 'Country' as const,
       name: 'United Kingdom',
     },
-    knowsAbout: [
-      { '@type': 'Thing' as const, name: 'Sport Psychology' },
-      { '@type': 'Thing' as const, name: 'Football Psychology' },
-      { '@type': 'Thing' as const, name: 'Cricket Psychology' },
-      { '@type': 'Thing' as const, name: 'Mental Skills Training' },
-      { '@type': 'Thing' as const, name: 'Group Workshops' },
-    ],
   }
 }
 
+/** Site-wide Organization schema with a typed root (not @graph). */
 export function buildSiteJsonLd() {
   return {
     '@context': 'https://schema.org',
-    '@graph': [buildSiteOrganizationNode()],
+    ...buildSiteOrganizationNode(),
   }
 }

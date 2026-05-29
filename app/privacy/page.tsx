@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
+import { SiteJsonLd } from '@/components/site-json-ld'
 import { CONTACT_EMAIL } from '@/lib/contact-mailto'
 import { SITE_URL, getCanonicalUrl } from '@/lib/site'
 
@@ -18,6 +19,7 @@ const lastUpdated = '29 May 2026'
 export default function PrivacyPage() {
   return (
     <>
+      <SiteJsonLd />
       <Navbar />
       <main className="site-section pt-24 pb-20 lg:pt-28 lg:pb-24">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">

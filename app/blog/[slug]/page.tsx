@@ -9,7 +9,10 @@ import { BlogPostContent } from '@/components/blog/blog-post-content'
 import { TableOfContents } from '@/components/blog/table-of-contents'
 import { getAllBlogPosts, getBlogPost, getBlogPostUrl } from '@/lib/blog/posts'
 import { SITE_OG_IMAGE, getSiteOgImageUrl } from '@/lib/site'
-import { buildBlogPostSchema } from '@/lib/blog/schema'
+import {
+  buildBlogPostBreadcrumbSchema,
+  buildBlogPostSchema,
+} from '@/lib/blog/schema'
 
 type PageProps = {
   params: Promise<{ slug: string }>
@@ -82,7 +85,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   const post = getBlogPost(slug)
   if (!post) notFound()
 
-  const schema = buildBlogPostSchema(post)
+  const blogPostingSchema = buildBlogPostSchema(post)
+  const breadcrumbSchema = buildBlogPostBreadcrumbSchema(post)
   const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'long',
@@ -101,7 +105,16 @@ export default async function BlogPostPage({ params }: PageProps) {
       <script
         id={`blog-schema-${post.slug}`}
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(blogPostingSchema),
+        }}
+      />
+      <script
+        id={`blog-breadcrumb-${post.slug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
       />
 
       <Navbar />

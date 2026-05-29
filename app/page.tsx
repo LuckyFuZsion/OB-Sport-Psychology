@@ -8,6 +8,7 @@ import { GallerySection } from '@/components/gallery-section'
 import { BlogSection } from '@/components/blog-section'
 import { ContactSection } from '@/components/contact-section'
 import { Footer } from '@/components/footer'
+import { SiteJsonLd } from '@/components/site-json-ld'
 import { getCanonicalUrl } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <SiteJsonLd />
       <Navbar />
       <main>
         <HeroSection />

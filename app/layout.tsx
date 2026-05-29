@@ -7,7 +7,6 @@ import {
   getCanonicalUrl,
   getSiteOgImageUrl,
 } from '@/lib/site'
-import { buildSiteJsonLd } from '@/lib/site-schema'
 import { MotionProvider } from '@/components/motion-provider'
 import './globals.css'
 
@@ -79,8 +78,6 @@ export const metadata: Metadata = {
   },
 }
 
-const jsonLd = buildSiteJsonLd()
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -88,13 +85,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <head>
-        <script
-          id="json-ld-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
       <body className="font-sans antialiased">
         <div className="site-bg" aria-hidden="true" />
         <MotionProvider>{children}</MotionProvider>
