@@ -200,9 +200,15 @@
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--hero-blue);
     background-image: url('/bg.webp');
-    background-position: center top;
+    background-position: right top;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      background-position: center top;
+    }
   }
 }
