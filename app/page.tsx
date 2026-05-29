@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { Navbar } from '@/components/navbar'
 import { HeroSection } from '@/components/hero-section'
 import { IntroSection } from '@/components/intro-section'
@@ -7,6 +8,13 @@ import { GallerySection } from '@/components/gallery-section'
 import { BlogSection } from '@/components/blog-section'
 import { ContactSection } from '@/components/contact-section'
 import { Footer } from '@/components/footer'
+import { getCanonicalUrl } from '@/lib/site'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: getCanonicalUrl('/'),
+  },
+}
 
 export default function HomePage() {
   return (

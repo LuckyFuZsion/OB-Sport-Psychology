@@ -49,8 +49,8 @@ export function IntroSection() {
                 alt="Olly, sport and exercise psychologist in training"
                 fill
                 className="object-contain object-bottom lg:object-center"
-                sizes="(max-width: 1024px) 384px, 480px"
-                priority
+                sizes="(max-width: 1024px) 100vw, 480px"
+                loading="lazy"
               />
             </figure>
           </div>

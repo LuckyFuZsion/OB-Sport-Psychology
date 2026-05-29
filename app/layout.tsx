@@ -1,7 +1,13 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { CONTACT_PHONE_E164 } from '@/lib/contact-mailto'
-import { SITE_OG_IMAGE, SITE_URL, getSiteOgImageUrl } from '@/lib/site'
+import {
+  SITE_OG_DESCRIPTION,
+  SITE_OG_IMAGE,
+  SITE_URL,
+  getCanonicalUrl,
+  getSiteOgImageUrl,
+} from '@/lib/site'
 import './globals.css'
 
 const inter = Inter({
@@ -24,10 +30,13 @@ export const metadata: Metadata = {
     'mental skills coaching',
     'CASES',
   ],
+  alternates: {
+    canonical: getCanonicalUrl('/'),
+  },
   openGraph: {
     title: 'OBSportPsychology | Helping people flourish',
-    description:
-      'Evidence-based sport psychology support for athletes, teams, and organisations.',
+    description: SITE_OG_DESCRIPTION,
+    url: getCanonicalUrl('/'),
     type: 'website',
     locale: 'en_GB',
     siteName: 'OB Sport Psychology',
@@ -44,8 +53,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'OBSportPsychology | Helping people flourish',
-    description:
-      'Evidence-based sport psychology support for athletes, teams, and organisations.',
+    description: SITE_OG_DESCRIPTION,
     images: [getSiteOgImageUrl()],
   },
   icons: {

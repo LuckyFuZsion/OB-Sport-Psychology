@@ -56,10 +56,10 @@ export const blogPosts: BlogPost[] = [
       url: `${SITE_URL}/#about`,
     },
     thumbnail: {
-      src: '/images/blog/systems-approach-youth-athletes.png',
+      src: '/images/blog/systems-approach-youth-athletes.webp',
       alt: 'Blog thumbnail illustrating a systems approach to youth athlete support in sport psychology',
       width: 1200,
-      height: 675,
+      height: 800,
     },
     tags: [
       'Youth Sport',

@@ -36,7 +36,7 @@ export function buildBlogPostSchema(post: BlogPost) {
         url: SITE_BASE_URL,
         logo: {
           '@type': 'ImageObject',
-          url: `${SITE_BASE_URL}/images/OB Sport Psychology.png`,
+          url: `${SITE_BASE_URL}/images/OB%20Sport%20Psychology.png`,
         },
       },
       {

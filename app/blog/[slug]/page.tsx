@@ -110,8 +110,9 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div className="absolute inset-0 opacity-20">
             <Image
               src={post.thumbnail.src}
-              alt=""
+              alt={post.thumbnail.alt}
               fill
+              sizes="100vw"
               className="object-cover"
               aria-hidden="true"
               priority
@@ -171,6 +172,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               alt={post.thumbnail.alt}
               width={post.thumbnail.width}
               height={post.thumbnail.height}
+              sizes="(max-width: 896px) 100vw, 896px"
               className="w-full h-auto rounded-xl border border-border"
               priority
             />

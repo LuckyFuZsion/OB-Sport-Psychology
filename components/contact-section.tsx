@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
+import Link from 'next/link'
 import { Send, Phone, Mail, Copy, Check, ExternalLink } from 'lucide-react'
 import {
   CONTACT_EMAIL,
@@ -269,7 +270,14 @@ export function ContactSection() {
 
                 <p className="mt-4 text-center text-xs text-muted-foreground leading-relaxed">
                   You will send via Gmail, Outlook in the browser, or copy the
-                  message. Nothing is stored on this website.
+                  message. Nothing is stored on this website. See our{' '}
+                  <Link
+                    href="/privacy"
+                    className="text-brand-blue hover:underline"
+                  >
+                    Privacy Policy
+                  </Link>
+                  .
                 </p>
               </form>
             )}

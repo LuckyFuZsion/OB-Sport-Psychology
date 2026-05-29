@@ -63,7 +63,8 @@ export function Navbar() {
               src={LOGO_SRC}
               alt="OB Sport Psychology"
               width={200}
-              height={56}
+              height={78}
+              sizes="200px"
               className="h-10 w-auto"
               priority
             />

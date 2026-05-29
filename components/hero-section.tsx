@@ -13,8 +13,10 @@ export function HeroSection() {
           src="/images/OB Sport Psychology.png"
           alt="OBSportPsychology brand graphic"
           fill
+          sizes="100vw"
           className="object-cover object-left md:object-[80%_center] lg:object-left"
           priority
+          quality={90}
         />
       </div>
 

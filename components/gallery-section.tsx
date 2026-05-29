@@ -5,14 +5,14 @@ const placements = [
   {
     name: 'Brooke House College Football Academy',
     context: 'Football Academy',
-    image: '/images/brooke-house.png',
+    image: '/images/brooke-house.webp',
     imageBg: 'bg-white',
     imageClassName: 'object-contain p-8 sm:p-10',
   },
   {
     name: 'Leicester City Football Club',
     context: 'Professional Football',
-    image: '/images/leicester-city-football-club.png',
+    image: '/images/leicester-city-football-club.webp',
     imageBg: 'bg-[#003090]',
     imageClassName: 'object-contain p-6 sm:p-8',
   },
@@ -46,6 +46,8 @@ export function GallerySection() {
                   src={item.image}
                   alt={`${item.name} logo`}
                   fill
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  loading="lazy"
                   className={`${item.imageClassName} transition-transform duration-500 group-hover:scale-105`}
                 />
               </div>

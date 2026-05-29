@@ -58,8 +58,10 @@ export function ServicesSection() {
                 <Image
                   src={service.image}
                   alt={service.imageAlt}
-                  width={1200}
-                  height={675}
+                  width={1536}
+                  height={1024}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  loading="lazy"
                   className="w-full h-auto block"
                 />
               </div>

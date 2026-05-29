@@ -1,12 +1,13 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF } from '@/lib/contact-mailto'
 import { navSections, sectionHref } from '@/lib/home-navigation'
 import { useHomeNavigation } from '@/hooks/use-home-navigation'
 
 const LOGO_SRC = '/images/OB-Sport-Psyhcology-Logo.webp'
-const WEBFUZSION_LOGO_SRC = '/images/webfuzsion-logo.png'
+const WEBFUZSION_LOGO_SRC = '/images/webfuzsion-logo.webp'
 const WEBFUZSION_URL = 'https://webfuzsion.co.uk'
 const currentYear = new Date().getFullYear()
 
@@ -38,7 +39,9 @@ export function Footer() {
                 src={LOGO_SRC}
                 alt="OB Sport Psychology"
                 width={220}
-                height={62}
+                height={86}
+                sizes="220px"
+                loading="lazy"
                 className="h-12 w-auto"
               />
             </a>
@@ -101,11 +104,19 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-card-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-card-muted">
+        <div className="mt-12 pt-6 border-t border-card-border flex flex-col gap-4 text-xs text-card-muted sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {currentYear} OBSportPsychology. All rights reserved.</p>
-          <p className="text-center">
-            Sport and Exercise Psychologist (in training) with CASES
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+            <Link
+              href="/privacy"
+              className="hover:text-brand-blue transition-colors duration-200"
+            >
+              Privacy Policy
+            </Link>
+            <p className="sm:text-right">
+              Sport and Exercise Psychologist (in training) with CASES
+            </p>
+          </div>
         </div>
 
         <div className="mt-8 pt-6 border-t border-border/60 flex justify-center">
@@ -119,8 +130,10 @@ export function Footer() {
             <Image
               src={WEBFUZSION_LOGO_SRC}
               alt="WebFuZsion"
-              width={160}
-              height={48}
+              width={320}
+              height={80}
+              sizes="160px"
+              loading="lazy"
               className="h-8 w-auto"
             />
           </a>

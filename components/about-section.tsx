@@ -179,7 +179,9 @@ export function AboutSection() {
                       alt={logo.alt}
                       width={160}
                       height={48}
-                      className="max-h-10 sm:max-h-12 w-full object-contain"
+                      sizes="(max-width: 640px) 40vw, 160px"
+                      loading="lazy"
+                      className="h-auto w-auto max-h-10 sm:max-h-12 max-w-full object-contain"
                     />
                   </div>
                 ))}
