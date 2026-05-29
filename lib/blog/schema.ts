@@ -1,5 +1,6 @@
 import type { BlogPost } from './posts'
 import { getBlogPostUrl, SITE_BASE_URL } from './posts'
+import { toSchemaDateTime } from '@/lib/iso-datetime'
 import { buildSiteOrganizationNode } from '@/lib/site-schema'
 
 function buildPublisher() {
@@ -36,8 +37,8 @@ export function buildBlogPostSchema(post: BlogPost) {
       '@type': 'WebPage',
       '@id': postUrl,
     },
-    datePublished: post.publishedAt,
-    dateModified: post.updatedAt,
+    datePublished: toSchemaDateTime(post.publishedAt),
+    dateModified: toSchemaDateTime(post.updatedAt),
     inLanguage: 'en-GB',
     author: {
       '@type': 'Person',
@@ -97,7 +98,7 @@ export function buildBlogListingSchema(posts: BlogPost[]) {
       '@type': 'BlogPosting',
       headline: post.title,
       url: getBlogPostUrl(post.slug),
-      datePublished: post.publishedAt,
+      datePublished: toSchemaDateTime(post.publishedAt),
       image: `${SITE_BASE_URL}${post.thumbnail.src}`,
       author: {
         '@type': 'Person',

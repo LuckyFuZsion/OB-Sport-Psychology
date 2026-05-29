@@ -8,6 +8,7 @@ import { Footer } from '@/components/footer'
 import { BlogPostContent } from '@/components/blog/blog-post-content'
 import { TableOfContents } from '@/components/blog/table-of-contents'
 import { getAllBlogPosts, getBlogPost, getBlogPostUrl } from '@/lib/blog/posts'
+import { toSchemaDateTime } from '@/lib/iso-datetime'
 import { SITE_OG_IMAGE, getSiteOgImageUrl } from '@/lib/site'
 import {
   buildBlogPostBreadcrumbSchema,
@@ -47,8 +48,8 @@ export async function generateMetadata({
       type: 'article',
       url,
       locale: 'en_GB',
-      publishedTime: post.publishedAt,
-      modifiedTime: post.updatedAt,
+      publishedTime: toSchemaDateTime(post.publishedAt),
+      modifiedTime: toSchemaDateTime(post.updatedAt),
       authors: [post.author.name],
       tags: post.tags,
       images: [
