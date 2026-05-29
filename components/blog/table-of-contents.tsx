@@ -12,7 +12,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
       className="rounded-xl border border-border bg-card p-6 lg:sticky lg:top-24"
     >
       <div className="flex items-center gap-2 mb-4">
-        <List className="h-4 w-4 text-primary" aria-hidden="true" />
+        <List className="h-4 w-4 text-brand-blue" aria-hidden="true" />
         <h2 className="text-sm font-semibold text-foreground tracking-wide">
           On this page
         </h2>
@@ -22,10 +22,10 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
           <li key={item.id}>
             <a
               href={`#${item.id}`}
-              className="group flex gap-3 text-sm text-muted-foreground hover:text-primary transition-colors leading-snug"
+              className="group flex gap-3 text-sm text-muted-foreground hover:text-brand-blue transition-colors leading-snug"
             >
               <span
-                className="flex-shrink-0 w-5 text-xs font-semibold text-primary/60 group-hover:text-primary tabular-nums"
+                className="flex-shrink-0 w-5 text-xs font-semibold text-brand-blue/60 group-hover:text-brand-blue tabular-nums"
                 aria-hidden="true"
               >
                 {String(index + 1).padStart(2, '0')}

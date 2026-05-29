@@ -7,7 +7,8 @@ import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { BlogPostContent } from '@/components/blog/blog-post-content'
 import { TableOfContents } from '@/components/blog/table-of-contents'
-import { getAllBlogPosts, getBlogPost, getBlogPostUrl, SITE_BASE_URL } from '@/lib/blog/posts'
+import { getAllBlogPosts, getBlogPost, getBlogPostUrl } from '@/lib/blog/posts'
+import { SITE_OG_IMAGE, getSiteOgImageUrl } from '@/lib/site'
 import { buildBlogPostSchema } from '@/lib/blog/schema'
 
 type PageProps = {
@@ -26,7 +27,7 @@ export async function generateMetadata({
   if (!post) return {}
 
   const url = getBlogPostUrl(post.slug)
-  const imageUrl = `${SITE_BASE_URL}${post.thumbnail.src}`
+  const imageUrl = getSiteOgImageUrl()
 
   return {
     title: `${post.title} | OBSportPsychology Blog`,
@@ -50,9 +51,10 @@ export async function generateMetadata({
       images: [
         {
           url: imageUrl,
-          width: post.thumbnail.width,
-          height: post.thumbnail.height,
-          alt: post.thumbnail.alt,
+          width: SITE_OG_IMAGE.width,
+          height: SITE_OG_IMAGE.height,
+          alt: SITE_OG_IMAGE.alt,
+          type: 'image/png',
         },
       ],
     },
@@ -120,7 +122,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div className="relative mx-auto max-w-4xl px-6 lg:px-8 py-12 lg:py-16">
             <Link
               href="/#blog"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-brand-blue transition-colors mb-8"
             >
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               Back to blog
@@ -130,7 +132,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase border border-primary/30 text-primary bg-primary/10"
+                  className="inline-flex px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase border border-brand-blue/30 text-brand-blue bg-brand-blue/10"
                 >
                   {tag}
                 </span>
@@ -147,22 +149,22 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-muted-foreground">
               <span className="inline-flex items-center gap-2">
-                <User className="h-4 w-4 text-primary" aria-hidden="true" />
+                <User className="h-4 w-4 text-brand-blue" aria-hidden="true" />
                 {post.author.name}
               </span>
               <span className="inline-flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-primary" aria-hidden="true" />
+                <Calendar className="h-4 w-4 text-brand-blue" aria-hidden="true" />
                 <time dateTime={post.publishedAt}>{formattedDate}</time>
               </span>
               <span className="inline-flex items-center gap-2">
-                <Clock className="h-4 w-4 text-primary" aria-hidden="true" />
+                <Clock className="h-4 w-4 text-brand-blue" aria-hidden="true" />
                 {post.readTimeMinutes} min read
               </span>
             </div>
           </div>
         </header>
 
-        <div className="border-b border-border bg-background">
+        <div className="border-b border-border/30">
           <div className="mx-auto max-w-4xl px-6 lg:px-8 py-6 lg:py-8">
             <Image
               src={post.thumbnail.src}

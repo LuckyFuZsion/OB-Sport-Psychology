@@ -12,7 +12,6 @@ const LOGO_SRC = '/images/OB-Sport-Psyhcology-Logo.webp'
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
-  const [scrolled, setScrolled] = useState(false)
   const { isHome, pathname, navigateToSection } = useHomeNavigation()
 
   useEffect(() => {
@@ -24,8 +23,6 @@ export function Navbar() {
     }
 
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-
       const sections = navSections.map((l) => l.id)
       for (const id of [...sections].reverse()) {
         const el = document.getElementById(id)
@@ -41,30 +38,18 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [isHome, pathname])
 
-  useEffect(() => {
-    if (!isHome) setScrolled(true)
-  }, [isHome])
-
   const handleNavClick = (id: string) => {
     setIsOpen(false)
     navigateToSection(id)
   }
 
   return (
-    <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled || !isHome
-          ? 'bg-background/95 backdrop-blur-md border-b border-border shadow-lg shadow-black/20'
-          : 'bg-transparent'
-      )}
-    >
+    <header className="site-nav fixed top-0 left-0 right-0 z-50 w-full">
       <nav
         className="mx-auto max-w-7xl px-6 lg:px-8"
         aria-label="Main navigation"
       >
         <div className="flex h-16 items-center justify-between">
-          {/* Brand */}
           <a
             href={sectionHref('home')}
             onClick={(e) => {
@@ -84,7 +69,6 @@ export function Navbar() {
             />
           </a>
 
-          {/* Desktop links */}
           <ul className="hidden lg:flex items-center gap-0.5" role="list">
             {navSections.map((link) => {
               const isActive = activeSection === link.id
@@ -99,14 +83,14 @@ export function Navbar() {
                     className={cn(
                       'relative px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-md',
                       isActive
-                        ? 'text-primary'
-                        : 'text-muted-foreground hover:text-foreground'
+                        ? 'text-brand-blue'
+                        : 'text-card-muted hover:text-white'
                     )}
                     aria-current={isActive ? 'page' : undefined}
                   >
                     {link.label}
                     {isActive && (
-                      <span className="absolute bottom-0 left-4 right-4 h-px bg-primary rounded-full" />
+                      <span className="absolute bottom-0 left-4 right-4 h-px bg-brand-blue rounded-full" />
                     )}
                   </a>
                 </li>
@@ -114,7 +98,6 @@ export function Navbar() {
             })}
           </ul>
 
-          {/* CTA button: desktop */}
           <a
             href={sectionHref('contact')}
             onClick={(e) => {
@@ -126,10 +109,9 @@ export function Navbar() {
             Contact
           </a>
 
-          {/* Mobile menu button */}
           <button
             type="button"
-            className="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+            className="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-card-muted hover:text-white hover:bg-white/10 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
@@ -139,11 +121,10 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mobile menu */}
         {isOpen && (
           <div
             id="mobile-menu"
-            className="lg:hidden border-t border-border bg-background/98 backdrop-blur-md pb-4"
+            className="lg:hidden border-t border-card-border bg-[var(--nav)] pb-4"
           >
             <ul className="pt-2 space-y-1" role="list">
               {navSections.map((link) => {
@@ -159,8 +140,8 @@ export function Navbar() {
                       className={cn(
                         'block px-4 py-3 text-sm font-medium rounded-md transition-colors',
                         isActive
-                          ? 'text-primary bg-primary/10'
-                          : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
+                          ? 'text-brand-blue bg-brand-blue/10'
+                          : 'text-card-muted hover:text-white hover:bg-white/10'
                       )}
                       aria-current={isActive ? 'page' : undefined}
                     >

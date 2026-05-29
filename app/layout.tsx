@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { SITE_URL } from '@/lib/site'
+import { CONTACT_PHONE_E164 } from '@/lib/contact-mailto'
+import { SITE_OG_IMAGE, SITE_URL, getSiteOgImageUrl } from '@/lib/site'
 import './globals.css'
 
 const inter = Inter({
@@ -29,8 +30,39 @@ export const metadata: Metadata = {
       'Evidence-based sport psychology support for athletes, teams, and organisations.',
     type: 'website',
     locale: 'en_GB',
+    siteName: 'OB Sport Psychology',
+    images: [
+      {
+        url: getSiteOgImageUrl(),
+        width: SITE_OG_IMAGE.width,
+        height: SITE_OG_IMAGE.height,
+        alt: SITE_OG_IMAGE.alt,
+        type: 'image/png',
+      },
+    ],
   },
-  themeColor: '#0a192f',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'OBSportPsychology | Helping people flourish',
+    description:
+      'Evidence-based sport psychology support for athletes, teams, and organisations.',
+    images: [getSiteOgImageUrl()],
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
+  manifest: '/site.webmanifest',
+  appleWebApp: {
+    capable: true,
+    title: 'OB Sport Psychology',
+    statusBarStyle: 'default',
+  },
+  themeColor: '#00142c',
   viewport: {
     width: 'device-width',
     initialScale: 1,
@@ -45,7 +77,7 @@ const jsonLd = {
   description:
     'Sport and Exercise Psychology practice offering 1-on-1 sessions, group workshops, and organisational support.',
   url: SITE_URL,
-  telephone: '',
+  telephone: CONTACT_PHONE_E164,
   address: {
     '@type': 'PostalAddress',
     addressCountry: 'GB',
@@ -70,7 +102,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} bg-background`}>
+    <html lang="en" className={inter.variable}>
       <head>
         <script
           id="json-ld-schema"

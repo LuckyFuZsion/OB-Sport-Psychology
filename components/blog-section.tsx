@@ -1,6 +1,7 @@
 import { getAllBlogPosts } from '@/lib/blog/posts'
 import { buildBlogListingSchema } from '@/lib/blog/schema'
 import { BlogCard } from '@/components/blog/blog-card'
+import { SectionEyebrow, SectionTitle } from '@/components/section-header'
 
 export function BlogSection() {
   const posts = getAllBlogPosts()
@@ -9,7 +10,7 @@ export function BlogSection() {
   return (
     <section
       id="blog"
-      className="py-24 lg:py-32 bg-background"
+      className="site-section py-24 lg:py-32"
       aria-label="Blog"
     >
       <script
@@ -19,16 +20,11 @@ export function BlogSection() {
       />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="h-px w-8 bg-primary" aria-hidden="true" />
-          <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase">
-            Blog
-          </span>
-        </div>
+        <SectionEyebrow>Blog</SectionEyebrow>
 
-        <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight tracking-tight text-balance mb-4 max-w-2xl">
-          Insights &amp; <span className="text-primary">Updates</span>
-        </h2>
+        <SectionTitle className="mb-4 max-w-2xl" highlight="Updates">
+          Insights &amp;
+        </SectionTitle>
         <p className="text-muted-foreground leading-relaxed mb-12 max-w-xl">
           Evidence-based articles on sport psychology, youth athletes, and
           performance.

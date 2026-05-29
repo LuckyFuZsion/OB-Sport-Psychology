@@ -28,21 +28,21 @@ export function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="py-24 lg:py-32 bg-secondary/30"
+      className="site-section py-24 lg:py-32"
       aria-label="Client testimonials"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="flex items-center gap-3 mb-4">
-          <span className="h-px w-8 bg-primary" aria-hidden="true" />
-          <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase">
+          <span className="h-px w-8 bg-brand-blue/70" aria-hidden="true" />
+          <span className="text-brand-blue-page text-xs font-semibold tracking-[0.2em] uppercase">
             Testimonials
           </span>
         </div>
         <div className="mb-14">
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight tracking-tight text-balance max-w-2xl">
             What Athletes &amp;{' '}
-            <span className="text-primary">Coaches Say</span>
+            <span className="text-brand-blue">Coaches Say</span>
           </h2>
         </div>
 
@@ -51,11 +51,11 @@ export function TestimonialsSection() {
           {testimonials.map((t, i) => (
             <figure
               key={i}
-              className="flex flex-col p-7 rounded-xl border border-border bg-card hover:border-primary/30 transition-colors duration-300"
+              className="content-card flex flex-col p-7 hover:border-flourish/30 transition-colors duration-300"
             >
               {/* Quote icon */}
               <Quote
-                className="h-8 w-8 text-primary/30 mb-5 flex-shrink-0"
+                className="h-8 w-8 text-brand-blue/30 mb-5 flex-shrink-0"
                 aria-hidden="true"
               />
 
@@ -68,10 +68,10 @@ export function TestimonialsSection() {
               <figcaption className="flex items-center gap-3 mt-6 pt-6 border-t border-border">
                 {/* Avatar placeholder */}
                 <div
-                  className="h-9 w-9 rounded-full bg-primary/15 border border-primary/25 flex items-center justify-center flex-shrink-0"
+                  className="h-9 w-9 rounded-full bg-brand-blue/15 border border-brand-blue/25 flex items-center justify-center flex-shrink-0"
                   aria-hidden="true"
                 >
-                  <span className="text-primary font-bold text-sm">
+                  <span className="text-brand-blue font-bold text-sm">
                     {t.initial}
                   </span>
                 </div>

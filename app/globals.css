@@ -4,44 +4,68 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* OB Sport Psychology: dark navy theme */
-  --background: oklch(0.13 0.04 240);        /* #0a192f deep navy */
-  --foreground: oklch(0.97 0 0);             /* crisp white */
-  --card: oklch(0.17 0.04 240);              /* slightly lighter navy */
-  --card-foreground: oklch(0.97 0 0);
-  --popover: oklch(0.17 0.04 240);
-  --popover-foreground: oklch(0.97 0 0);
-  --primary: oklch(0.68 0.18 210);           /* sky blue #38bdf8 */
-  --primary-foreground: oklch(0.1 0.04 240);
-  --secondary: oklch(0.22 0.04 240);         /* muted navy panel */
-  --secondary-foreground: oklch(0.97 0 0);
-  --muted: oklch(0.22 0.04 240);
-  --muted-foreground: oklch(0.65 0.04 220);  /* slate-blue grey */
-  --accent: oklch(0.68 0.18 210);
-  --accent-foreground: oklch(0.1 0.04 240);
+  /* Hero / nav fallback — matches bg.webp top tone */
+  --hero-blue: #00142c;
+
+  /* Page text on background image (outside cards) */
+  --background: transparent;
+  --foreground: oklch(0.97 0.005 90);
+
+  /* Dark content cards */
+  --card: oklch(0.18 0.014 265);
+  --card-foreground: oklch(0.96 0.005 90);
+  --card-elevated: oklch(0.21 0.016 265);
+  --card-muted: oklch(0.82 0.018 230);
+  --card-border: oklch(0.32 0.028 265);
+
+  /* Fixed nav bar — matches hero sky */
+  --nav: var(--hero-blue);
+  --nav-foreground: oklch(0.97 0.005 90);
+  --nav-muted: oklch(0.78 0.02 230);
+  --nav-border: oklch(0.34 0.05 258);
+
+  --popover: oklch(0.18 0.014 265);
+  --popover-foreground: oklch(0.96 0.005 90);
+
+  /* Logo light blue — cards, icons, highlights */
+  --brand-blue: oklch(0.76 0.15 210);
+  --brand-blue-page: oklch(0.52 0.14 230);
+  --flourish: var(--brand-blue);
+  --flourish-muted: oklch(0.28 0.05 225);
+  --accent: var(--flourish);
+  --accent-foreground: oklch(0.14 0.04 230);
+
+  --primary: oklch(0.52 0.14 230);
+  --primary-foreground: oklch(0.99 0 0);
+
+  --brand-warm: oklch(0.8 0.1 85);
+
+  --secondary: oklch(1 0 0 / 0.06);
+  --secondary-foreground: oklch(0.97 0.005 90);
+  --muted: oklch(1 0 0 / 0.08);
+  --muted-foreground: oklch(0.88 0.02 230);
+
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.27 0.04 235);            /* subtle navy border */
-  --input: oklch(0.22 0.04 240);
-  --ring: oklch(0.68 0.18 210);
+  --border: oklch(1 0 0 / 0.18);
+  --input: oklch(0.16 0.014 265);
+  --ring: oklch(0.52 0.14 230);
   --radius: 0.5rem;
 
-  /* Chart tokens (kept for compatibility) */
-  --chart-1: oklch(0.68 0.18 210);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-1: oklch(0.72 0.15 210);
+  --chart-2: oklch(0.52 0.14 230);
+  --chart-3: oklch(0.8 0.1 85);
+  --chart-4: oklch(0.48 0.03 265);
+  --chart-5: oklch(0.55 0.1 210);
 
-  /* Sidebar */
-  --sidebar: oklch(0.17 0.04 240);
-  --sidebar-foreground: oklch(0.97 0 0);
-  --sidebar-primary: oklch(0.68 0.18 210);
-  --sidebar-primary-foreground: oklch(0.1 0.04 240);
-  --sidebar-accent: oklch(0.22 0.04 240);
-  --sidebar-accent-foreground: oklch(0.97 0 0);
-  --sidebar-border: oklch(0.27 0.04 235);
-  --sidebar-ring: oklch(0.68 0.18 210);
+  --sidebar: oklch(0.96 0.01 90);
+  --sidebar-foreground: oklch(0.28 0.035 265);
+  --sidebar-primary: oklch(0.52 0.14 230);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.93 0.012 88);
+  --sidebar-accent-foreground: oklch(0.28 0.035 265);
+  --sidebar-border: oklch(0.86 0.018 88);
+  --sidebar-ring: oklch(0.52 0.14 230);
 }
 
 @theme inline {
@@ -51,6 +75,13 @@
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+  --color-card-elevated: var(--card-elevated);
+  --color-card-muted: var(--card-muted);
+  --color-card-border: var(--card-border);
+  --color-nav: var(--nav);
+  --color-nav-foreground: var(--nav-foreground);
+  --color-nav-muted: var(--nav-muted);
+  --color-nav-border: var(--nav-border);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
@@ -61,6 +92,11 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-page: var(--brand-blue-page);
+  --color-flourish: var(--flourish);
+  --color-flourish-muted: var(--flourish-muted);
+  --color-brand-warm: var(--brand-warm);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -85,14 +121,88 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@layer components {
+  .site-nav {
+    background-color: var(--nav);
+    border-bottom: 1px solid var(--nav-border);
+    color: var(--nav-foreground);
+    box-shadow: 0 4px 24px rgb(0 0 0 / 0.25);
+  }
+
+  .site-section {
+    @apply relative;
+  }
+
+  .section-eyebrow-rule {
+    @apply h-px w-8 shrink-0 bg-brand-blue/70;
+  }
+
+  .section-eyebrow {
+    @apply text-brand-blue text-xs font-semibold tracking-[0.2em] uppercase;
+  }
+
+  .section-title-accent {
+    @apply text-brand-blue;
+  }
+
+  /* Dark cards on the light page — white + logo light blue text */
+  .content-card,
+  .panel-elevated {
+    @apply relative overflow-hidden rounded-2xl border border-card-border bg-card text-card-foreground shadow-xl shadow-black/20;
+    background-image: linear-gradient(
+      145deg,
+      color-mix(in oklch, var(--flourish-muted) 55%, transparent) 0%,
+      transparent 52%
+    );
+  }
+
+  /* Beat page-level text-* utilities inside dark cards */
+  .content-card :is(p, li, h1, h2, h3, h4, h5, h6, label, summary, dt, dd, span):not(
+      [class*='text-brand-blue']
+    ):not([class*='text-flourish']):not([class*='text-primary']),
+  .panel-elevated :is(p, li, h1, h2, h3, h4, h5, h6, label, summary, dt, dd, span):not(
+      [class*='text-brand-blue']
+    ):not([class*='text-flourish']):not([class*='text-primary']) {
+    color: var(--card-foreground);
+  }
+
+  .content-card .text-foreground,
+  .panel-elevated .text-foreground {
+    color: var(--card-foreground) !important;
+  }
+
+  .content-card .text-muted-foreground,
+  .panel-elevated .text-muted-foreground {
+    color: var(--card-muted) !important;
+  }
+
+  .content-card .text-brand-blue,
+  .content-card .text-flourish,
+  .panel-elevated .text-brand-blue,
+  .panel-elevated .text-flourish {
+    color: var(--brand-blue) !important;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   html {
     scroll-behavior: smooth;
+    min-height: 100%;
   }
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    min-height: 100dvh;
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--hero-blue);
+    background-image: url('/bg.webp');
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 }

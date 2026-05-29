@@ -26,7 +26,7 @@ function RenderBlock({ block }: { block: BlogBlock }) {
             }`}
           >
             <span
-              className="flex-shrink-0 mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary"
+              className="flex-shrink-0 mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-brand-blue/10 text-xs font-bold text-brand-blue"
               aria-hidden="true"
             >
               {block.ordered ? index + 1 : '•'}
@@ -102,7 +102,7 @@ export function BlogPostContent({ post }: { post: BlogPost }) {
                   key={ref.url}
                   className="text-sm text-muted-foreground leading-relaxed"
                 >
-                  <span className="font-semibold text-primary mr-2">
+                  <span className="font-semibold text-brand-blue mr-2">
                     [{index + 1}]
                   </span>
                   <cite className="not-italic">{ref.text}</cite>{' '}
@@ -110,7 +110,7 @@ export function BlogPostContent({ post }: { post: BlogPost }) {
                     href={ref.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary hover:underline break-all"
+                    className="text-brand-blue hover:underline break-all"
                   >
                     {ref.url}
                   </a>

@@ -1,12 +1,15 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
-import { Send, Phone, Mail } from 'lucide-react'
+import { Send, Phone, Mail, Copy, Check, ExternalLink } from 'lucide-react'
 import {
   CONTACT_EMAIL,
-  buildContactMailtoUrl,
-  openContactMailto,
+  CONTACT_PHONE,
+  CONTACT_PHONE_HREF,
+  buildContactEmailDraft,
+  type ContactEmailDraft,
 } from '@/lib/contact-mailto'
+import { SectionEyebrow, SectionTitle } from '@/components/section-header'
 
 interface FormState {
   name: string
@@ -20,7 +23,8 @@ export function ContactSection() {
     email: '',
     message: '',
   })
-  const [submitted, setSubmitted] = useState(false)
+  const [draft, setDraft] = useState<ContactEmailDraft | null>(null)
+  const [copied, setCopied] = useState(false)
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -39,38 +43,48 @@ export function ContactSection() {
     const email = form.email.trim()
     const message = form.message.trim()
 
-    const mailtoUrl = buildContactMailtoUrl({ name, email, message })
-    openContactMailto(mailtoUrl)
-    setSubmitted(true)
+    setDraft(buildContactEmailDraft({ name, email, message }))
+    setCopied(false)
   }
 
   const resetForm = () => {
-    setSubmitted(false)
+    setDraft(null)
+    setCopied(false)
     setForm({ name: '', email: '', message: '' })
   }
 
+  const handleCopy = async () => {
+    if (!draft) return
+
+    try {
+      await navigator.clipboard.writeText(draft.clipboardText)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 2500)
+    } catch {
+      window.prompt('Copy your message:', draft.clipboardText)
+    }
+  }
+
   const inputClass =
-    'w-full bg-input border border-border rounded-md px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-colors duration-200'
+    'w-full bg-input border border-card-border rounded-md px-4 py-3 text-sm text-card-foreground placeholder:text-card-muted focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-colors duration-200'
+
+  const actionButtonClass =
+    'inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 text-sm font-semibold rounded-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
 
   return (
     <section
       id="contact"
-      className="py-24 lg:py-32 bg-background"
+      className="site-section py-24 lg:py-32"
       aria-label="Contact form"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="h-px w-8 bg-primary" aria-hidden="true" />
-          <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase">
-            Contact
-          </span>
-        </div>
+        <SectionEyebrow>Contact</SectionEyebrow>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           <div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight tracking-tight text-balance mb-6">
-              Get in <span className="text-primary">Touch</span>
-            </h2>
+            <SectionTitle className="mb-6" highlight="Touch">
+              Get in
+            </SectionTitle>
             <p className="text-muted-foreground leading-relaxed mb-10">
               Send a message using the form, or reach me directly using the
               details below.
@@ -78,25 +92,25 @@ export function ContactSection() {
 
             <div className="space-y-5">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
-                  <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
+                <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                  <Phone className="h-4 w-4 text-brand-blue" aria-hidden="true" />
                 </div>
                 <div>
                   <p className="text-foreground font-semibold text-sm">
                     Phone
                   </p>
                   <a
-                    href="tel:"
-                    className="text-muted-foreground text-sm hover:text-primary transition-colors"
+                    href={CONTACT_PHONE_HREF}
+                    className="text-muted-foreground text-sm hover:text-brand-blue transition-colors"
                   >
-                    Phone number to be confirmed
+                    {CONTACT_PHONE}
                   </a>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
-                  <Mail className="h-4 w-4 text-primary" aria-hidden="true" />
+                <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                  <Mail className="h-4 w-4 text-brand-blue" aria-hidden="true" />
                 </div>
                 <div>
                   <p className="text-foreground font-semibold text-sm">
@@ -104,7 +118,7 @@ export function ContactSection() {
                   </p>
                   <a
                     href={`mailto:${CONTACT_EMAIL}`}
-                    className="text-muted-foreground text-sm hover:text-primary transition-colors"
+                    className="text-muted-foreground text-sm hover:text-brand-blue transition-colors"
                   >
                     {CONTACT_EMAIL}
                   </a>
@@ -113,22 +127,69 @@ export function ContactSection() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-8">
-            {submitted ? (
-              <div className="flex flex-col items-center justify-center h-full min-h-[320px] text-center gap-4">
-                <div className="h-14 w-14 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center">
-                  <Send className="h-6 w-6 text-primary" aria-hidden="true" />
+          <div className="panel-elevated p-8">
+            {draft ? (
+              <div className="flex flex-col min-h-[320px] gap-5">
+                <div className="text-center sm:text-left">
+                  <h3 className="text-xl font-bold text-foreground mb-2">
+                    One more step — send your email
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Choose how you want to send — Gmail and Outlook open in your
+                    browser with everything filled in.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-foreground">
-                  Your email client has opened
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-                  Your message has been pre-filled and is ready to send.
+
+                <div className="space-y-3">
+                  <a
+                    href={draft.gmailComposeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${actionButtonClass} bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20`}
+                  >
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    Open in Gmail
+                  </a>
+
+                  <a
+                    href={draft.outlookComposeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${actionButtonClass} border border-card-border bg-card-elevated text-card-foreground hover:border-flourish/30 hover:bg-card`}
+                  >
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    Open in Outlook
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={handleCopy}
+                    className={`${actionButtonClass} border border-card-border bg-card-elevated text-card-foreground hover:border-flourish/30 hover:bg-card`}
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="h-4 w-4 text-brand-blue" aria-hidden="true" />
+                        Copied to clipboard
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="h-4 w-4" aria-hidden="true" />
+                        Copy message
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                <p className="text-xs text-muted-foreground text-center sm:text-left leading-relaxed">
+                  Sending to{' '}
+                  <span className="text-foreground">{CONTACT_EMAIL}</span>.
+                  Sign in to Gmail or Outlook if asked, then press Send.
                 </p>
+
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="mt-2 text-sm text-primary hover:underline"
+                  className="mt-auto text-sm text-brand-blue hover:underline text-center sm:text-left"
                 >
                   Send another message
                 </button>
@@ -141,7 +202,7 @@ export function ContactSection() {
                       htmlFor="name"
                       className="block text-xs font-semibold text-foreground mb-2"
                     >
-                      Name <span className="text-primary">*</span>
+                      Name <span className="text-brand-blue">*</span>
                     </label>
                     <input
                       id="name"
@@ -161,7 +222,7 @@ export function ContactSection() {
                       htmlFor="email"
                       className="block text-xs font-semibold text-foreground mb-2"
                     >
-                      Email Address <span className="text-primary">*</span>
+                      Email Address <span className="text-brand-blue">*</span>
                     </label>
                     <input
                       id="email"
@@ -200,15 +261,15 @@ export function ContactSection() {
 
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 w-full px-6 py-4 text-sm font-semibold rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-lg shadow-primary/20 hover:shadow-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className={`${actionButtonClass} bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 hover:shadow-primary/30`}
                 >
                   <Send className="h-4 w-4" aria-hidden="true" />
-                  Send Message
+                  Prepare email
                 </button>
 
-                <p className="mt-4 text-center text-xs text-muted-foreground">
-                  Clicking send opens your email client with your message
-                  pre-filled. No data is stored on this website.
+                <p className="mt-4 text-center text-xs text-muted-foreground leading-relaxed">
+                  You will send via Gmail, Outlook in the browser, or copy the
+                  message. Nothing is stored on this website.
                 </p>
               </form>
             )}

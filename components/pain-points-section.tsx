@@ -44,21 +44,21 @@ export function PainPointsSection() {
   return (
     <section
       id="support"
-      className="py-24 lg:py-32 bg-secondary/30"
+      className="site-section py-24 lg:py-32"
       aria-label="Core areas of support"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="flex items-center gap-3 mb-4">
-          <span className="h-px w-8 bg-primary" aria-hidden="true" />
-          <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase">
+          <span className="h-px w-8 bg-brand-blue/70" aria-hidden="true" />
+          <span className="text-brand-blue text-xs font-semibold tracking-[0.2em] uppercase">
             Areas of Support
           </span>
         </div>
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-14">
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight tracking-tight text-balance max-w-xl">
             What&apos;s Holding You Back{' '}
-            <span className="text-primary">from Your Best?</span>
+            <span className="text-brand-blue">from Your Best?</span>
           </h2>
           <p className="text-muted-foreground max-w-sm leading-relaxed lg:text-right">
             Sport psychology addresses the specific mental obstacles athletes
@@ -73,18 +73,18 @@ export function PainPointsSection() {
             return (
               <div
                 key={area.title}
-                className="group relative p-6 rounded-xl border border-border bg-card hover:border-primary/50 hover:bg-card/80 transition-all duration-300"
+                className="content-card group relative p-6 hover:border-flourish/40 transition-all duration-300"
               >
                 {/* Top accent bar on hover */}
                 <div
-                  className="absolute top-0 left-6 right-6 h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"
+                  className="absolute top-0 left-6 right-6 h-px bg-brand-blue scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"
                   aria-hidden="true"
                 />
 
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                  <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center group-hover:bg-brand-blue/20 transition-colors duration-300">
                     <Icon
-                      className="h-5 w-5 text-primary"
+                      className="h-5 w-5 text-brand-blue"
                       aria-hidden="true"
                     />
                   </div>

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { SectionEyebrow, SectionTitle } from '@/components/section-header'
 
 const placements = [
   {
@@ -21,20 +22,15 @@ export function GallerySection() {
   return (
     <section
       id="gallery"
-      className="py-24 lg:py-32 bg-card"
+      className="site-section py-24 lg:py-32"
       aria-label="Gallery and experience"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="h-px w-8 bg-primary" aria-hidden="true" />
-          <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase">
-            Gallery
-          </span>
-        </div>
+        <SectionEyebrow>Gallery</SectionEyebrow>
 
-        <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight tracking-tight text-balance mb-4 max-w-2xl">
-          Where I&apos;ve <span className="text-primary">Worked</span>
-        </h2>
+        <SectionTitle className="mb-4 max-w-2xl" highlight="Worked">
+          Where I&apos;ve
+        </SectionTitle>
         <p className="text-muted-foreground leading-relaxed mb-12 max-w-xl">
           Experience across academy and professional football environments.
         </p>
@@ -43,11 +39,9 @@ export function GallerySection() {
           {placements.map((item) => (
             <figure
               key={item.name}
-              className="group flex flex-col rounded-2xl border border-border bg-background overflow-hidden hover:border-primary/30 transition-colors"
+              className="content-card group flex flex-col overflow-hidden hover:border-flourish/30 transition-colors"
             >
-              <div
-                className={`relative aspect-[16/10] ${item.imageBg}`}
-              >
+              <div className={`relative aspect-[16/10] ${item.imageBg}`}>
                 <Image
                   src={item.image}
                   alt={`${item.name} logo`}
@@ -56,8 +50,8 @@ export function GallerySection() {
                 />
               </div>
 
-              <figcaption className="px-6 py-5 border-t border-border text-center">
-                <p className="text-xs font-semibold tracking-[0.15em] uppercase text-primary mb-1.5">
+              <figcaption className="px-6 py-5 border-t border-card-border text-center">
+                <p className="text-xs font-semibold tracking-[0.15em] uppercase text-brand-blue mb-1.5">
                   {item.context}
                 </p>
                 <p className="text-lg font-bold text-foreground leading-snug text-balance">

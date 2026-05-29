@@ -11,7 +11,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
   })
 
   return (
-    <article className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5">
+    <article className="content-card group flex flex-col overflow-hidden hover:border-flourish/30 transition-all duration-300 hover:shadow-2xl hover:shadow-black/25">
       <Link href={`/blog/${post.slug}`} className="relative aspect-[16/9] overflow-hidden">
         <Image
           src={post.thumbnail.src}
@@ -19,7 +19,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
       </Link>
 
       <div className="flex flex-col flex-1 p-6 sm:p-7">
@@ -34,7 +34,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
           </span>
         </div>
 
-        <h3 className="text-xl sm:text-2xl font-bold text-foreground leading-snug mb-3 group-hover:text-primary transition-colors">
+        <h3 className="text-xl sm:text-2xl font-bold text-foreground leading-snug mb-3 transition-colors">
           <Link href={`/blog/${post.slug}`}>{post.title}</Link>
         </h3>
 
@@ -46,7 +46,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
           {post.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="inline-flex px-2.5 py-1 rounded-full text-[11px] font-medium border border-border text-muted-foreground"
+              className="inline-flex px-2.5 py-1 rounded-full text-[11px] font-medium border border-card-border text-card-muted"
             >
               {tag}
             </span>
@@ -55,7 +55,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
 
         <Link
           href={`/blog/${post.slug}`}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-flourish hover:gap-3 transition-all"
         >
           Read article
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
