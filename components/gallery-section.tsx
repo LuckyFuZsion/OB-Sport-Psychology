@@ -12,7 +12,7 @@ const placements = [
   },
   {
     name: 'Leicester City Football Club',
-    context: 'Professional Football',
+    context: 'Professional Football Academy',
     image: '/images/leicester-city-football-club.webp',
     imageBg: 'bg-[#003090]',
     imageClassName: 'object-contain p-6 sm:p-8',
@@ -36,7 +36,7 @@ export function GallerySection() {
             Where I&apos;ve
           </SectionTitle>
           <p className="text-muted-foreground leading-relaxed mb-12 max-w-xl">
-            Experience across academy and professional football environments.
+            Experience across academy and professional football academy environments.
           </p>
         </Reveal>
 

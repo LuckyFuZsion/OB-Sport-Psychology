@@ -85,10 +85,18 @@ export default function PrivacyPage() {
                   </li>
                 </ul>
                 <p className="mt-3">
-                  The contact form on this site helps you prepare an email in
-                  your own email app (for example Gmail or Outlook). We do not
-                  store form submissions on the website unless a live form
-                  service is enabled in future.
+                  When you use the contact form, we collect your name, email
+                  address, and message. Submissions are processed by{' '}
+                  <a
+                    href="https://web3forms.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand-blue hover:underline"
+                  >
+                    Web3Forms
+                  </a>{' '}
+                  so your enquiry can be delivered to us by email. We do not
+                  store form submissions on this website.
                 </p>
               </section>
 

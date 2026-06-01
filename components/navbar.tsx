@@ -128,6 +128,7 @@ export function Navbar() {
 
           <button
             type="button"
+            suppressHydrationWarning
             className="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-card-muted hover:text-white hover:bg-white/10 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}

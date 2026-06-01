@@ -6,6 +6,7 @@ const contentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",
+  "connect-src 'self' https://api.web3forms.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self' mailto:",
