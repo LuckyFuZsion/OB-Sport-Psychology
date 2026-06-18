@@ -1,0 +1,38 @@
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+
+const CANONICAL_HOST = new URL(
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.obsportpsychology.co.uk'
+).host
+
+export function middleware(request: NextRequest) {
+  if (process.env.NODE_ENV === 'development') {
+    return NextResponse.next()
+  }
+
+  if (process.env.VERCEL_ENV !== 'production') {
+    return NextResponse.next()
+  }
+
+  const hostname = request.headers.get('host')?.split(':')[0] ?? ''
+  const proto = request.headers.get('x-forwarded-proto')
+
+  const needsHostRedirect = hostname !== CANONICAL_HOST
+  const needsHttpsRedirect = proto === 'http'
+
+  if (!needsHostRedirect && !needsHttpsRedirect) {
+    return NextResponse.next()
+  }
+
+  const url = request.nextUrl.clone()
+  url.protocol = 'https:'
+  url.host = CANONICAL_HOST
+
+  return NextResponse.redirect(url, 308)
+}
+
+export const config = {
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|txt|xml|webmanifest)$).*)',
+  ],
+}
