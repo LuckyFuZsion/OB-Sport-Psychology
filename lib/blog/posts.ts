@@ -43,6 +43,121 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'barriers-to-coach-engagement-sport-psychology',
+    title: 'Barriers to Coach Engagement with Sport Psychology',
+    excerpt:
+      'Why coaches often hesitate to engage with sport psychology — and practical ways practitioners can break down stigma to build psychologically informed environments.',
+    publishedAt: '2026-08-02',
+    updatedAt: '2026-08-02',
+    readTimeMinutes: 6,
+    author: {
+      name: 'Olly',
+      role: 'Sport and Exercise Psychologist (in training)',
+      url: `${SITE_URL}/#about`,
+    },
+    thumbnail: {
+      src: '/images/blog/barriers-to-coach-engagement-sport-psychology.webp',
+      alt: 'Blog thumbnail illustrating barriers to coach engagement with sport psychology',
+      width: 1200,
+      height: 800,
+    },
+    tags: [
+      'Coaching',
+      'Sport Psychology',
+      'Stigma',
+      'Elite Sport',
+      'Football Academies',
+    ],
+    keywords: [
+      'coach engagement sport psychology',
+      'stigma sport psychology',
+      'psychologically informed environments',
+      'coach education psychology',
+      'barriers to sport psychology',
+      'mental skills coaching elite sport',
+    ],
+    sections: [
+      {
+        id: 'introduction',
+        title: 'Introduction',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'In my previous blog post, we looked at the value of working within athletes’ immediate environments to enhance the impact of sport psychology work. In theory, all coaches should receive support from sport psychology practitioners relating to how they can effectively implement psychologically-informed practice. However, the hard truth is that coaches often do not engage with sport psychologists, for a number of reasons. In this post, we will explore the barriers that sport psychologists can face when attempting to implement sport psychology into coach education, and advise on how stigmas can be broken down so that psychologically informed environments can be formed.',
+          },
+        ],
+      },
+      {
+        id: 'stigma',
+        title: 'Stigma',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Stigmas are sets of beliefs held by an individual or group that are often untrue and lead to discriminatory behaviour. For example, a group of people may seek to avoid a person with a non-contagious health condition due to holding a set of untrue, negative beliefs about them. In sport, stigmas about psychology and mental health exist largely due to historic beliefs about the importance of being ‘tough’ and a ‘just get on with it’ attitude. Vulnerability has often been perceived as weak and so players and coaches have felt the need to dissociate themselves with anything ‘mental health related’ in order to fit in. There are a number of different reasons why stigmas still occur to this day in relation to coach engagement with psychology. Below are a few key examples:',
+          },
+          {
+            type: 'list',
+            items: [
+              'Negative experience with previous psychologist — if a coach has worked with a psychologist previously, and they did not agree with their methods or just simply didn’t get on, this can reinforce negative beliefs and make the stigma worse.',
+              'Lack of understanding — a common misconception about the role of psychology in elite sport is that psychology is only for ‘mentally weak athletes’. Coaches who hold this belief may therefore believe that psychology is not necessary in their environment because they perceive their players to be ‘fine’.',
+              'Lack of objectivity and measurability — unlike other performance departments, psychological support can often be perceived as ‘not objective enough’, due to relying less heavily on performance metrics and quantifiable data (in reality, performance can be measured, with the ways in which this is done depending heavily on practitioner philosophy). As such, coaches may doubt the benefits that psychology can have on their team’s performance.',
+            ],
+          },
+          {
+            type: 'paragraph',
+            text: 'A study by Mortimer et al (2022) highlights the sort of culture that can push coaches away from engaging with sport psychology. They conducted 36 interviews with 11 coaches, 5 support staff, 18 players and 2 parents of players embedded in elite football academies. They found that both players and coaches were reluctant or struggled to discuss stress or show vulnerability, due to a culture existing that leaves them fearing being perceived as weak. In these sorts of environments, it is no wonder coaches are hesitant to engage with psychology.',
+          },
+        ],
+      },
+      {
+        id: 'tips-to-break-down-stigmas',
+        title: 'Tips on How to Break Down Stigmas in Sport',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'It is important to consider that some stigmas are more deeply engrained within individuals or organisations than others, so breaking them down can be challenging. Below are some tips on how to approach coaches when attempting to break down stigmas:',
+          },
+          {
+            type: 'list',
+            ordered: true,
+            items: [
+              'Build trusting relationships with coaches. This can be a slow burner, and of course not all sport psychologists have the fortune of being embedded into a sports organisation. However, prioritising building trust with coaches, via attending training sessions, discussing non-psychology topics and showing genuine interest in coaches’ philosophies, can be crucial in helping coaches feel respected and therefore increasing their openness to engagement with psychology.',
+              'Engage in good-faithed discussions with coaches, using language they understand. It is important that coaches don’t feel like they are being patronised when discussing their beliefs, as this will likely lead to even greater disapproval. Instead, maintaining respect and acknowledgements of their perspectives whilst nudging them in a helpful direction can help to gain buy in and slowly shift beliefs.',
+              'Provide real world examples of how psychology influences players. Rather than just telling coaches that psychology is important, evidencing its impact using real world examples can help coaches see the direct relevance it has to them. If they can see how engaging with psychology can benefit their team, they are more likely to be open to it.',
+              'Emphasise the value of psychology for achieving performance outcomes. A coach’s ultimate goal is for their team/athlete to perform well and win matches/competitions. It is therefore crucial to demonstrate to them how psychology can contribute to this success, i.e., by showing them how previous work has lead to success (whilst maintaining confidentiality).',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'the-good-news',
+        title: 'The Good News',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'Despite stigmas still existing in performance sport environments, the landscape is improving, with the field of sport psychology growing every day. Psychology departments are now commonplace in elite sport and a shared understanding of sport psychology is becoming more apparent within multi-disciplinary teams. With advancements in the opportunities and impact that sport psychology is having in elite sport, the future looks bright, and I am hopeful that the idea of a stigma around psychology in sport will eventually become a distant memory.',
+          },
+        ],
+      },
+      {
+        id: 'final-thoughts',
+        title: 'Final Thoughts',
+        blocks: [
+          {
+            type: 'paragraph',
+            text: 'I hope that this post has helped shine light on the practical difficulties sport psychologists can face when attempting to implement their practice in sporting environments. No matter how much the field grows and evidence suggests its benefits on sporting performance, you will still get coaches who are hesitant to engage. It is therefore crucial that coaches are engaged with through respectful, open conversations that help them understand the power of sport psychology for both well-being and performance outcomes.',
+          },
+        ],
+      },
+    ],
+    references: [
+      {
+        text: 'Mortimer, P., Parris, S., Jones, K., Henry, L., & Moore, S. (2022). The Boy in the Man’s Mask: The Duty of Care on Football Academies. Report. University of Greenwich; Goldsmiths College; British Academy, London, UK.',
+        url: 'https://gala.gre.ac.uk/id/eprint/50372/',
+      },
+    ],
+  },
+  {
     slug: 'systems-approach-youth-athletes',
     title: 'Using a Systems Approach to Help Youth Athletes Thrive',
     excerpt:
